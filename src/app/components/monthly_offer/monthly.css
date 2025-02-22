@@ -1,0 +1,176 @@
+:root {
+  --w-image: 290px;
+}
+
+.container_montly {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.first_montly {
+  background-color: #f1e7d1;
+}
+
+.second_montly {
+  background-color: #be5a58;
+  margin-top: 0px;
+}
+
+.top_montly {
+  top: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+}
+.bottom_montly {
+  bottom: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+}
+
+.top_corner {
+  top: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #c2902f;
+}
+
+.bottom_corner {
+  bottom: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #75735f;
+}
+
+.left_montly {
+  left: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  box-shadow: inset -12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+.right_montly {
+  right: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  box-shadow: inset 12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+
+.bottom_color {
+  background-color: #75735f;
+}
+
+.top_color {
+  background-color: #ece1b5;
+}
+
+.left_corner {
+  left: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #c2902f;
+  box-shadow: inset -12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+
+.right_corner {
+  right: -10px;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #c2902f;
+  box-shadow: inset 12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+
+.spacer {
+  padding: 25px 20px 20px 20px;
+}
+
+.spacer2 {
+  padding: 15px 20px 20px 20px;
+}
+
+.carousel .tiketMontly {
+  z-index: 40;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+.carousel .tiketMontly.active {
+  animation: effectNextActive 0.5s ease-in-out 1 forwards;
+}
+
+.carousel .tiketMontly.active,
+.carousel .tiketMontly.other1,
+.carousel .tiketMontly.other2 {
+  display: block;
+}
+
+.next .tiketMontly.active {
+  --transform-from: 290px;
+  z-index: 50;
+}
+
+.carousel .tiketMontly.other1 {
+  animation: effectNextOther1 0.5s ease-in-out 1 forwards;
+}
+
+.carousel .tiketMontly.other2 {
+  animation: effectNextOther1 0.5s ease-in-out 1 forwards;
+}
+
+.carousel .other1,
+.carousel .other2 {
+  pointer-events: none;
+  z-index: 30;
+}
+
+.next .tiketMontly.other1 {
+  --transform-from: 0px;
+}
+.next .tiketMontly.other2 {
+  --transform-from: calc(var(--w-image) * 2);
+}
+
+@keyframes effectNextOther1 {
+  from {
+    transform: translateX(calc(var(--transform-from)));
+    scale: 1.1;
+  }
+  to {
+    transform: translateX(calc(var(--transform-from) - var(--w-image)));
+    scale: 1;
+  }
+}
+
+@keyframes effectNextOther2 {
+  from {
+    transform: translateX(calc(var(--transform-from)));
+  }
+  to {
+    transform: translateX(calc(var(--transform-from) - var(--w-image)));
+  }
+}
+
+@keyframes effectNextActive {
+  from {
+    transform: translateX(calc(var(--transform-from)));
+    scale: 1;
+  }
+  to {
+    transform: translateX(calc(var(--transform-from) - var(--w-image)));
+    scale: 1.1;
+  }
+}
