@@ -153,7 +153,7 @@ function Month_offer() {
             <motion.div
                 style={{ backgroundImage: `url(${bgMonth.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 className="backdrop_offer w-[95%] sm:w-[85%] min-h-[350px] p-16 rounded-[40px] flex justify-center relative">
-                <h2 className="text-[#381308] select-none font-black text-5xl sm:text-[45px] text-center absolute top-5">Harga Spesial!</h2>
+                <h2 className="text-[#381308] select-none font-black text-[10vw] sm:text-[45px] text-center absolute top-5">Harga Spesial!</h2>
             </motion.div>
 
 
@@ -178,19 +178,21 @@ function Month_offer() {
 
                     <div className="h-[320px] w-[230px] ml-10 sm:ml-0 relative carousel next" >
                         {loading ? (
-                            <div className="loader mt-28 mx-auto z-[999]">
-                                <div className="bar1"></div>
-                                <div className="bar2"></div>
-                                <div className="bar3"></div>
-                                <div className="bar4"></div>
-                                <div className="bar5"></div>
-                                <div className="bar6"></div>
-                                <div className="bar7"></div>
-                                <div className="bar8"></div>
-                                <div className="bar9"></div>
-                                <div className="bar10"></div>
-                                <div className="bar11"></div>
-                                <div className="bar12"></div>
+                            <div className='w-full h-full flex justify-center items-center '>
+                                <div className="loader z-[999] ">
+                                    <div className="bar1"></div>
+                                    <div className="bar2"></div>
+                                    <div className="bar3"></div>
+                                    <div className="bar4"></div>
+                                    <div className="bar5"></div>
+                                    <div className="bar6"></div>
+                                    <div className="bar7"></div>
+                                    <div className="bar8"></div>
+                                    <div className="bar9"></div>
+                                    <div className="bar10"></div>
+                                    <div className="bar11"></div>
+                                    <div className="bar12"></div>
+                                </div>
                             </div>
                         ) : (
                             <>
