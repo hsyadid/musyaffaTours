@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'images.musyaffatours.com', 
+      },
+      {
+        protocol: 'https',
         hostname: 'musyaffatours.com',
       },
       {

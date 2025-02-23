@@ -31,7 +31,8 @@ async function getPaket() {
 
 function Month_offer() {
     const [products, setProducts] = useState([]);
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     const itemsRef = useRef([]);
     let countItem = 0;
@@ -41,11 +42,21 @@ function Month_offer() {
     const [isAnimating, setIsAnimating] = useState(false);
     const [isPedestalAnimating, setIsPedestalAnimating] = useState(false);
 
+
     useEffect(() => {
         const fetchProducts = async () => {
-            const data = await getPaket();
-            const sortedProducts = data.data.sort((a, b) => a.harga - b.harga).slice(0, 3);
-            setProducts(sortedProducts);
+            try {
+                setLoading(true);
+                setError("");
+
+                const data = await getPaket();
+                const sortedProducts = data.data.sort((a, b) => a.harga - b.harga).slice(0, 3);
+                setProducts(sortedProducts);
+            } catch (err) {
+                setError("Gagal mengambil data produk.");
+            } finally {
+                setLoading(false);
+            }
         };
         fetchProducts();
     }, []);
@@ -142,7 +153,7 @@ function Month_offer() {
             <motion.div
                 style={{ backgroundImage: `url(${bgMonth.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                 className="backdrop_offer w-[95%] sm:w-[85%] min-h-[350px] p-16 rounded-[40px] flex justify-center relative">
-                <h2 className="text-[#381308] select-none font-black text-[45px] text-center absolute top-5">Harga Spesial!</h2>
+                <h2 className="text-[#381308] select-none font-black text-5xl sm:text-[45px] text-center absolute top-5">Harga Spesial!</h2>
             </motion.div>
 
 
@@ -166,26 +177,45 @@ function Month_offer() {
                         className="absolute inset-0 bg-black opacity-10 z-1"></div>
 
                     <div className="h-[320px] w-[230px] ml-10 sm:ml-0 relative carousel next" >
-                        {products.map((product, index) => (
-                            <div key={product._id}>
-                                <TicketMontly
-                                    product={product}
-                                    openModal={() => openModal(product)}
-                                    className={
-                                        index === 0 ? 'other1' : index === 1 ? 'active' : index === 2 ? 'other2' : ''
-                                    }
-                                />
+                        {loading ? (
+                            <div className="loader mt-28 mx-auto z-[999]">
+                                <div className="bar1"></div>
+                                <div className="bar2"></div>
+                                <div className="bar3"></div>
+                                <div className="bar4"></div>
+                                <div className="bar5"></div>
+                                <div className="bar6"></div>
+                                <div className="bar7"></div>
+                                <div className="bar8"></div>
+                                <div className="bar9"></div>
+                                <div className="bar10"></div>
+                                <div className="bar11"></div>
+                                <div className="bar12"></div>
                             </div>
-                        ))}
+                        ) : (
+                            <>
+                                {products.map((product, index) => (
+                                    <div key={product._id}>
+                                        <TicketMontly
+                                            product={product}
+                                            openModal={() => openModal(product)}
+                                            className={
+                                                index === 0 ? 'other1' : index === 1 ? 'active' : index === 2 ? 'other2' : ''
+                                            }
+                                        />
+                                    </div>
+                                ))}
+                            </>
+                        )}
 
                         {/* Modal */}
                         {isModalOpen && selectedproduct && (
                             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center backdrop-blur z-[100]">
-                                <div className="relative max-w-screen max-h-screen bg-[rgba(0,0,0,0.9)]">
+                                <div className="relative max-w-fit max-h-screen  flex justify-center items-center">
                                     <Image
                                         src={selectedproduct.gambar}
                                         alt="gambar_modal_termurah"
-                                        className="w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] object-cover border-[15px] border-white"
+                                        className="w-[90%] h-[90%] sm:w-[500px] sm:h-[500px] left-1/2 object-cover border-[20px] border-white"
                                         loading="lazy"
                                         width={350}
                                         height={350}
@@ -194,7 +224,7 @@ function Month_offer() {
 
                                     <div
                                         onClick={closeModal}
-                                        className="absolute -top-3 -right-3 size-6 bg-white rounded-full flex justify-center items-center"
+                                        className="absolute -top-3  right-3 size-6 bg-white rounded-full flex justify-center items-center"
                                     >
                                         <MdOutlineClose className="fill-red-500 text-2xl font-semibold" />
                                     </div>

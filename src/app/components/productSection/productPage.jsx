@@ -6,20 +6,38 @@ import { motion } from 'framer-motion';
 import { useInView } from "react-intersection-observer";
 
 async function getPaket() {
-    const response = await fetch(`${window.location.origin}/api/paket`);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(`${window.location.origin}/api/paket`);
+        if (!response.ok) throw new Error("Failed to fetch data");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return { data: [] };
+    }
 }
+
 
 
 function ProductPage() {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const data = await getPaket();
-            setProducts(data.data);
+            try {
+                setLoading(true);
+                setError("");
+
+                const data = await getPaket();
+                setProducts(data.data);
+            } catch (err) {
+                setError("Gagal mengambil data produk.");
+            } finally {
+                setLoading(false);
+            }
         };
         fetchProducts();
     }, []);
@@ -152,6 +170,7 @@ function ProductPage() {
                     <ProductList
                         dataFilter={currentPost}
                         data={currentPost}
+                        loading={loading}
                     />
                 </div>
 

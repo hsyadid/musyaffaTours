@@ -161,7 +161,7 @@ function AboutUS() {
     };
 
     return (
-        <div className="w-screen h-fit flex flex-col justify-center items-center">
+        <div className="w-screen h-fit flex flex-col justify-center items-center overflow-hidden">
 
             <div className="hook_aboutUs w-screen h-screen md:h-[115vw] lg:h-[100vw] xl:h-screen 2xl:h-[78vh] lg:pt-24 flex flex-col justify-center lg:justify-start items-center relative  ">
                 <h3 className="text-[#3b1918] font-light text-center text-sm lg:pt-24 ">Tentang kami</h3>
@@ -252,7 +252,7 @@ function AboutUS() {
                 </motion.div>
 
                 {/* Gambar kecil */}
-                <div className="flex justify-center items-center gap-2 md:gap-5 h-fit">
+                <div className="flex justify-center items-center gap-1 md:gap-5 h-fit">
                     <div
                         className={`h-[100px] w-8 md:h-[135px] md:w-10 bg-[#542116] flex items-center justify-center cursor-pointer ${currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
                             }`}
@@ -307,7 +307,7 @@ function AboutUS() {
             </div>
 
 
-            <div className="location py-12 mb-20 w-screen">
+            <div className="location pt-3 mb-20 w-screen">
 
                 <motion.h1
                     ref={refHeadLocation}
@@ -333,7 +333,7 @@ function AboutUS() {
                     />
                 </motion.div>
 
-                <h2 className=" text-[#672222] w-[80%] font-light text-center mx-auto text-[3vw] md:text-xl m-3">Ruko Sentra Menteng Blok MN No. 23 Bintaro Sektor 7, Jl. Dr. Samratulangi 13, Pd. Jaya, <br />Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15220</h2>
+                <h2 className=" text-[#672222] w-[80%] font-light text-center mx-auto text-[3vw] md:text-xl my-3">Ruko Sentra Menteng Blok MN No. 23 Bintaro Sektor 7, Jl. Dr. Samratulangi 13, Pd. Jaya, <br />Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15220</h2>
             </div>
 
         </div>
