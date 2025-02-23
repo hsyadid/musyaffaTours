@@ -100,7 +100,7 @@ export const Ticket = ({ openModal, product }) => {
                 <div className="spacer flex justify-center items-center">
                     <div className="relative size-[90px] sm:size-[100px] md:size-[170px] lg:size-[200px]  overflow-hidden">
                         <Image
-                            src='https://images.musyaffatours.com/images/Maret%202025/Maret3.jpg'
+                            src={gambar}
                             alt={`paket - ${product.bulan}`}
                             className="object-cover object-top z-10 peer"
                             layout="fill"
