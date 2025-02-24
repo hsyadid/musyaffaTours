@@ -125,7 +125,7 @@ const SocialsBlock = () => (
         >
             <a
                 href="#"
-                onClick={() => window.open("https://api.whatsapp.com/send/?phone=6285281570559&text=Asallamualaikum+bapak%2Fibu%2C+terima+kasih+sudah+menghubungi+kami.+&type=phone_number&app_absent=0", "_blank")}
+                onClick={() => window.open("https://api.whatsapp.com/send/?phone=6285281570559&text=Assalamualaikum+Admin+Musyaffa+Tours%2C+bisa+bantu+saya+untuk+informasi+terkait+keberangkatan+umrah+di+musyaffatours", "_blank")}
                 className="grid h-full place-content-center text-3xl text-white"
             >
                 <FaWhatsapp className="lg:size-20" />
@@ -166,7 +166,7 @@ const TrustBlock = () => (
     <Block className="col-span-12 text-3xl leading-snug flex items-center p-9 w-full h-full overflow-hidden relative overflow- group">
         <div className="w-full sm:w-4 z-50 sm:block flex flex-col justify-center items-center">
             <strong className="text-white text-3xl ">
-                Sudah terpecaya
+                Sudah terpercaya
             </strong>
             <button onClick={() => document.getElementById('container_Testimoni').scrollIntoView({ behavior: 'smooth' })} className="button_artikel mt-3 text-sm text-[#672222] bg-[#f1e7d1] py-1 px-10 rounded-full cursor-pointer active:shadow active:top-2 active:relative  "> Testimoni </button>
 
@@ -229,7 +229,7 @@ const TrustBlock = () => (
 const TimeBlock = () => (
     <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3">
         <SlCalender className="size-8" />
-        <p className="text-center text-[35px] text-zinc-300 w-1 flex justify-center items-center">Senin s/d Sabtu</p>
+        <p className="text-center text-[27px] text-zinc-300 w-48 flex justify-center items-center">senin s/d kamis <br /> &  <br />sabtu</p>
     </Block>
 );
 

@@ -302,6 +302,16 @@ html {
   box-shadow: 0px 7px #94742d;
 }
 
+.button_paket_avail {
+  border: 6px solid #93c8a2;
+  box-shadow: 0px 7px #5d8e57;
+}
+
+.button_paket_sold {
+  border: 6px solid #d2665a;
+  box-shadow: 0px 7px #b82132;
+}
+
 .ripped_paper::after {
   content: "";
   position: absolute;
@@ -337,7 +347,7 @@ html {
   top: 30%;
   opacity: 0;
   border-radius: 50px;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   animation: fade458 1s linear infinite;
 }
 

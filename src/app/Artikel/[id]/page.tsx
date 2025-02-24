@@ -5,11 +5,11 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface Artikel {
-    artikelID: string;
-    judul: string;
-    konten: string;
-    gambar: string;
+    id: string;
     tanggal: string;
+    judul: string;
+    gambar: string;
+    konten: string;
 }
 
 const ArtikelDetail = () => {
@@ -25,7 +25,7 @@ const ArtikelDetail = () => {
             const data = await response.json();
             
             const currentArtikel = data.data.find((item: Artikel) => 
-                item.artikelID === params.id
+                item.id === params.id
             );
 
             setLastIndex(data.data.length);
@@ -58,9 +58,22 @@ const ArtikelDetail = () => {
 
     if (!artikel) {
         return (
-            <div className="w-screen h-screen flex items-center justify-center">
-                <p className="text-2xl">Loading...</p>
+            <div className='w-full h-full flex justify-center items-center '>
+            <div className="loader z-[999] ">
+                <div className="bar1"></div>
+                <div className="bar2"></div>
+                <div className="bar3"></div>
+                <div className="bar4"></div>
+                <div className="bar5"></div>
+                <div className="bar6"></div>
+                <div className="bar7"></div>
+                <div className="bar8"></div>
+                <div className="bar9"></div>
+                <div className="bar10"></div>
+                <div className="bar11"></div>
+                <div className="bar12"></div>
             </div>
+        </div>
         );
     }
 

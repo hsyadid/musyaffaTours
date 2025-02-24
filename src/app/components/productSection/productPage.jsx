@@ -4,18 +4,7 @@ import ProductList from "@/app/components/productSection/productList";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { motion } from 'framer-motion';
 import { useInView } from "react-intersection-observer";
-
-async function getPaket() {
-    try {
-        const response = await fetch(`${window.location.origin}/api/paket`);
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error(error);
-        return { data: [] };
-    }
-}
+import supabase from "@/../libs/supabaseConnect"
 
 
 
@@ -25,16 +14,19 @@ function ProductPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                setLoading(true);
-                setError("");
+                const { data } = await supabase.from('paket_umrah').select()
 
-                const data = await getPaket();
-                setProducts(data.data);
+                if (data) {
+                    setProducts(data)
+                }
+
             } catch (err) {
-                setError("Gagal mengambil data produk.");
+                setError(err);
             } finally {
                 setLoading(false);
             }

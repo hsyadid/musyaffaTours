@@ -165,7 +165,7 @@ function AboutUS() {
 
             <div className="hook_aboutUs w-screen h-screen md:h-[115vw] lg:h-[100vw] xl:h-screen 2xl:h-[78vh] lg:pt-24 flex flex-col justify-center lg:justify-start items-center relative  ">
                 <h3 className="text-[#3b1918] font-light text-center text-sm lg:pt-24 ">Tentang kami</h3>
-                <h1 className="text-[#3b1918] font-bold text-center text-[8vw] sm:text-[5.9vw] lg:text-7xl min-w-[40%] sm:max-w-[60%] xl:max-w-[60%] 2xl:max-w-[40%] ">Kami menghadirkan umroh yang lebih bermakna.</h1>
+                <h1 className="text-[#3b1918] font-bold text-center text-[8vw] sm:text-[5.9vw] lg:text-7xl min-w-[40%] sm:max-w-[60%] xl:max-w-[60%] 2xl:max-w-[40%] ">Kami menghadirkan umrah yang lebih bermakna.</h1>
 
                 <div className=' absolute w-[1500px] lg:w-[1200px] xl:w-[1500px] h-[700px] '>
  
@@ -231,7 +231,7 @@ function AboutUS() {
                     animate={{ opacity: inViewHeader ? 1 : 0, scale: inViewHeader ? 1 : 0.5 }}
                     transition={{ duration: 0.5 }}
                     className="text-[#672222] select-none text-center text-[10vw] sm:text-7xl font-bold leading-none">
-                    Testimoni <br className="md:hidden" /> Umroh
+                    Testimoni <br className="md:hidden" /> umrah
                 </motion.div>
 
                 {/* Gambar besar */}
@@ -321,7 +321,7 @@ function AboutUS() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: inViewloc ? 1 : 0, scale: inViewloc ? 1 : 0.5 }}
                     transition={{ duration: 0.5 }}
-                    className="bg-[#542116] w-[80%] h-auto flex justify-center items-center rounded-lg p-4 mx-auto">
+                    className="bg-[#542116] w-[80%] lg:w-[60%] h-auto flex justify-center items-center rounded-lg p-4 mx-auto">
                     <iframe
                         className="w-full min-h-[400px] max-h-[500px] border-2 border-black"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.9158082507693!2d106.72240127280858!3d-6.274800161419958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f10eb67b438f%3A0xd469ae800e0cb9c5!2sMusyaffa%20Tours%20(PT%20Musyaffa%20Cahaya%20Hati)!5e0!3m2!1sen!2sid!4v1737112712345!5m2!1sen!2sid"

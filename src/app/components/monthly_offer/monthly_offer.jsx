@@ -12,22 +12,8 @@ import { motion } from 'framer-motion';
 import Image from "next/image"
 import metallic from "@/../public/metallic-board-background.webp"
 import bgMonth from "@/../public/bg_month.svg"
+import supabase from "@/../libs/supabaseConnect"
 
-
-
-
-async function getPaket() {
-    try {
-        const response = await fetch(`${window.location.origin}/api/paket`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return null;
-    }
-}
 
 function Month_offer() {
     const [products, setProducts] = useState([]);
@@ -46,14 +32,17 @@ function Month_offer() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                setLoading(true);
-                setError("");
+                const { data } = await supabase.from('paket_umrah').select()
 
-                const data = await getPaket();
-                const sortedProducts = data.data.sort((a, b) => a.harga - b.harga).slice(0, 3);
-                setProducts(sortedProducts);
+                if (data) {
+                    const sortedProducts = data.filter(product => product.selesai === false).sort((a, b) => a.harga - b.harga).slice(0, 3);
+                    setProducts(sortedProducts)
+                    console.log(sortedProducts)
+                }
+
+
             } catch (err) {
-                setError("Gagal mengambil data produk.");
+                setError(err);
             } finally {
                 setLoading(false);
             }
@@ -197,7 +186,7 @@ function Month_offer() {
                         ) : (
                             <>
                                 {products.map((product, index) => (
-                                    <div key={product._id}>
+                                    <div key={`${product._id}-${product.bulan}-${index}`}>
                                         <TicketMontly
                                             product={product}
                                             openModal={() => openModal(product)}
@@ -217,19 +206,16 @@ function Month_offer() {
                                     <Image
                                         src={selectedproduct.gambar}
                                         alt="gambar_modal_termurah"
-                                        className="w-[90%] h-[90%] sm:w-[500px] sm:h-[500px] left-1/2 object-cover border-[20px] border-white"
+                                        className="w-[92%] h-[92%] sm:w-[500px] sm:h-[500px] left-1/2 object-cover border-[20px] border-white"
                                         loading="lazy"
                                         width={350}
                                         height={350}
                                         layout="intrinsic"
                                     />
 
-                                    <div
-                                        onClick={closeModal}
-                                        className="absolute -top-3  right-3 size-6 bg-white rounded-full flex justify-center items-center"
-                                    >
-                                        <MdOutlineClose className="fill-red-500 text-2xl font-semibold" />
-                                    </div>
+                                    <button onClick={closeModal} className="absolute p-1 -top-2 -right-2 size-7 bg-white rounded-full flex justify-center items-center">
+                                        <MdOutlineClose className='fill-red-500 text-2xl font-semibold' />
+                                    </button>
                                 </div>
                             </div>
                         )}
@@ -291,6 +277,11 @@ export const TicketMontly = ({ product, className, openModal }) => {
         return src;
     };
 
+    const handleButtonClick = (e) => {
+        e.stopPropagation();
+        window.open("https://api.whatsapp.com/send/?phone=6285281570559&text=Assalamualaikum+Admin+Musyaffa+Tours%2C+bisa+bantu+saya+untuk+informasi+terkait+keberangkatan+umrah+di+musyaffatours", "_blank")
+    };
+
     return (
         <div
             onClick={openModal}
@@ -310,23 +301,32 @@ export const TicketMontly = ({ product, className, openModal }) => {
                             fill
                             loader={loaderProp}
                         />
-                        <button onClick={openModal} className="py-2 px-2 border-2 border-[#9A3B3B] bg-[#f1e7d1] absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-[24px] cursor-pointer transition-opacity duration-300 opacity-0 peer-hover:opacity-100 hover:opacity-100">
-                            <p className="text-[10px] text-[#9A3B3B] font-extrabold">Lihat Brosur</p>
+                        <button onClick={openModal} className="py-2 px-3 w-24 sm:w-32 border-2 border-[#9A3B3B] bg-[#f1e7d1] absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-[24px] cursor-pointer transition-opacity duration-300 opacity-0 peer-hover:opacity-100 hover:opacity-100">
+                            <p className=" text-[10px]  sm:text-[12px]  text-[#9A3B3B] font-extrabold">Lihat Brosur</p>
                         </button>
                     </div>
                 </div >
             </div >
-            <div className="container_montly second_montly w-[200px] h-[110px]  sm:w-[230px] sm:h-[110px]">
+            <div className="container_montly second_montly w-[200px] h-[115px]  sm:w-[230px] sm:h-[110px]">
                 <div className="top_corner left_corner"></div>
                 <div className="top_corner right_corner"></div>
                 <div className="bottom_montly bottom_color left_montly"></div>
                 <div className="bottom_montly bottom_color right_montly"></div>
                 <div className="spacer2 flex-col flex justify-center items-center">
                     <div className="rounded-[10px] px-2 py-1  bg-[#f1e7d1]">
-                        <h3 className="text-[8px] text-[#672222]">program {product.durasi} hari</h3>
+                        <h3 className="text-[8px] text-[#672222]">{product.tanggal}</h3>
                     </div>
-                    <h1 className="font-bold text-[22px] text-[#f1e7d1]">{product.harga} <span className="text-sm text-[#eaeaea]">/PAX</span></h1>
-                    <h2 className="text-[#f1e7d1] text-sm">{product.tanggal}</h2>
+                    <h1 className="font-bold text-[22px] text-[#f1e7d1]">{product.harga} Juta <span className="text-sm text-[#eaeaea]">/PAX</span></h1>
+                    <button
+                        onClick={handleButtonClick}
+                        disabled={product.selesai}
+                        className={`${product.selesai
+                            ? "button_paket_sold text-[#f1e7d1] bg-[#b62c25]"
+                            : "button_paket_avail text-[#672222] bg-[#bfe0c3]"
+                            } mt-1 sm:mt-0 text-[9px] sm:text-[10px] w-[120px] py-[2px] rounded-full cursor-pointer active:shadow active:top-2 active:relative`}
+                    >
+                        {product.selesai ? 'Sold Out' : 'Pesan sekarang'}
+                    </button>
                 </div>
             </div>
         </div >

@@ -34,7 +34,10 @@ function Footer() {
                                 <FaInstagram className="size-2 sm:size-3 md:size-7 group-hover:text-white transition-all duration-300" />
                             </div>
                         </a>
-                        <a href="#" onClick={() => window.open("https://api.whatsapp.com/send/?phone=6285281570559&text=Asallamualaikum+bapak%2Fibu%2C+terima+kasih+sudah+menghubungi+kami.+&type=phone_number&app_absent=0", "_blank")}>
+                        <a
+                            href="#"
+                            onClick={() => window.open("https://api.whatsapp.com/send/?phone=6285281570559&text=Assalamualaikum+Admin+Musyaffa+Tours%2C+bisa+bantu+saya+untuk+informasi+terkait+keberangkatan+umrah+di+musyaffatours", "_blank")}
+                        >
                             <div className="flex justify-center items-center p-1 sm:p-2 rounded-full bg-gray-600 hover:bg-[#5e8f3b] hover:scale-110 transition-all duration-300 group">
                                 <FaWhatsapp className="size-2 sm:size-3 md:size-7 group-hover:text-white transition-all duration-300" />
                             </div>
