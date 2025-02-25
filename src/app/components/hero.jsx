@@ -19,7 +19,7 @@ function Hero() {
     return (
         <Backdrop ref={backdropRef} backgroundY={backgroundY}>
             <motion.div
-                className="flex flex-col items-center -mt-52 sm:-mt-40 overflow-hidden"
+                className="flex flex-col items-center -mt-52 sm:-mt-40 overflow-visible"
                 style={{ y: textY }}
             >
                 <motion.div
@@ -27,7 +27,7 @@ function Hero() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <h1 className="nama_brand leading-[180px] text-[42px] sm:text-6xl md:text-[60px] whitespace-nowrap text-[#ffca4f] tracking-tight font-[950]">
+                    <h1 className="nama_brand leading-[180px] text-[42px] sm:text-6xl md:text-[60px] whitespace-nowrap text-[#ffca4f] tracking-tight font-[950] animate-wiggle">
                         Musyaffa Tours
                     </h1>
                 </motion.div>
@@ -39,7 +39,7 @@ function Hero() {
                     className="hook w-[350px] sm:w-[400px] md:w-[900px] text-center mb-8 -mt-10 sm:mt-6 text-[#d6cbb2]"
                 >
                     <h2 className="font-black leading-none tracking-wider text-3xl sm:text-4xl md:text-6xl">
-                        Umrah Hemat dan Amanah.
+                        Umrah Hemat dan Amanah
                     </h2>
                 </motion.div>
             </motion.div>

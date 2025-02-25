@@ -88,9 +88,9 @@ const HeaderBlock = () => (
         <Image
             src={logo_clear}
             alt="logo"
-            className=" size-[120px] rounded-full lg:size-[350px]"
+            className=" size-[150px] rounded-full md:size-[350px]"
         />
-        <h1 className="mb-3 text-4xl font-medium leading-tight text-center">
+        <h1 className="mb-3 text-3xl font-medium leading-tight text-center">
             PT Musyaffa Cahaya Hati{" "}
         </h1>
         <h2 className="text-zinc-400">
