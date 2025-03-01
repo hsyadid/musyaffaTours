@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import supabase from "@/../libs/supabaseConnect"
 
 interface Artikel {
     id: string;
@@ -19,30 +20,27 @@ const ArtikelDetail = () => {
     const [lastIndex, setLastIndex] = useState<number>(1);
     const pageNumber = parseInt(params.id as string, 10);
 
-    const getBerita = useCallback(async () => {
-        try {
-            const response = await fetch(`${window.location.origin}/api/berita`);
-            const data = await response.json();
-            
-            const currentArtikel = data.data.find((item: Artikel) => 
-                item.id === params.id
-            );
+    const [news, setNews] = useState<Artikel[]>([]);
+    const [loading, setLoading] = useState(true);
 
-            setLastIndex(data.data.length);
-            
-            if (currentArtikel) {
-                setArtikel(currentArtikel);
-            } else {
-                router.push('/Artikel');
-            }
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }, [params.id, router]);
 
     useEffect(() => {
-        getBerita();
-    }, [getBerita]);
+        const fetchNews = async () => {
+            try {
+                const { data } = await supabase.from('artikel_berita').select()
+
+                if (data) {
+                    const filterData = data.filter(((news) => news.id == pageNumber))
+                    setArtikel(filterData[0])
+                }
+
+
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchNews();
+    }, []);
 
     const handleNext = () => {
         if (pageNumber < lastIndex) {

@@ -26,6 +26,7 @@ export default function Article() {
                 const { data } = await supabase.from('artikel_berita').select()
 
                 if (data) {
+                    console.log(data)
                     setNews(data)
                 }
 
