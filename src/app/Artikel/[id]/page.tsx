@@ -40,7 +40,7 @@ const ArtikelDetail = () => {
             }
         };
         fetchNews();
-    }, []);
+    }, [pageNumber]);
 
     const handleNext = () => {
         if (pageNumber < lastIndex) {
