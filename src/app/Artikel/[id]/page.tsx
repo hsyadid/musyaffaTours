@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -17,27 +17,20 @@ const ArtikelDetail = () => {
     const params = useParams();
     const router = useRouter();
     const [artikel, setArtikel] = useState<Artikel | null>(null);
-    const [lastIndex, setLastIndex] = useState<number>(1);
     const pageNumber = parseInt(params.id as string, 10);
-
-    const [news, setNews] = useState<Artikel[]>([]);
-    const [loading, setLoading] = useState(true);
-
+    
+    const [lastIndex, setLastIndex] = useState<number>(1);
 
     useEffect(() => {
         const fetchNews = async () => {
-            try {
+        
                 const { data } = await supabase.from('artikel_berita').select()
-
                 if (data) {
+                    setLastIndex(data.length);
                     const filterData = data.filter(((news) => news.id == pageNumber))
                     setArtikel(filterData[0])
                 }
-
-
-            } finally {
-                setLoading(false);
-            }
+            
         };
         fetchNews();
     }, [pageNumber]);
