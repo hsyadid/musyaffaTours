@@ -37,11 +37,22 @@ function ProductPage() {
     // filter button
     const [filterMonth, setFilterMonth] = useState("Semua bulan");
 
+    const months = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
     let availableMonth = new Set(["Semua bulan"]);
     products.forEach((product) => {
-        availableMonth.add(product.bulan)
-    })
+        availableMonth.add(product.bulan.trim());
+    });
+
     availableMonth = [...availableMonth];
+
+    availableMonth = availableMonth.sort((a, b) => {
+        return months.indexOf(a) - months.indexOf(b);
+    });
+
 
     let dataFilter = null
     if (filterMonth != 'Semua bulan') {
@@ -130,14 +141,14 @@ function ProductPage() {
             </button>
 
             <div className=" min-w-[400px] max-w-[600px] md:min-w-[600px] md:max-w-[1000px] min-h-min p-4  flex flex-col justify-center items-center ">
-                <div className="header_product w-[115%] lg:w-full min-h-min flex flex-col justify-center items-center sm:flex-row sm:justify-between sm:items-end gap-3 sm:gap-0 px-4 box-border relative ">
+                <div className={`header_product w-[115%] lg:w-full min-h-min flex flex-col justify-center items-center ${availableMonth.length > 5 ? 'sm:flex-col sm:gap-4' : 'sm:flex-row sm:gap-0'} gap-3 sm:gap-0 px-4 box-border relative`}>
                     <motion.div
                         ref={ref2}
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: inView2 ? 1 : 0.5, opacity: inView2 ? 1 : 0 }}
                         transition={{
                             type: "spring", mass: 0.5, stiffness: 100, duration: 0.5
-                        }} className="text-[#672222]  sm:w-10 font-semibold text-7xl text-center sm:text-[40px] md:text-[47px] leading-[1] lg:text-5xl pr-2">All <br /> Product
+                        }} className={`text-[#672222] ${availableMonth.length > 5 ? 'sm:w-96 md:text-[80px]' : 'sm:w-10 lg:text-6xl md:text-[47px]'} font-semibold text-7xl text-center sm:text-[40px] leading-[1] pr-2`}>All <br /> Product
                     </motion.div>
 
                     <div
