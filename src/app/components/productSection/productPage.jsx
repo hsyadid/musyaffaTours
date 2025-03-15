@@ -54,11 +54,13 @@ function ProductPage() {
     });
 
 
-    let dataFilter = null
-    if (filterMonth != 'Semua bulan') {
+    let dataFilter = null;
+    if (filterMonth !== 'Semua bulan') {
         dataFilter = products.filter((product) => product.bulan === filterMonth);
     } else {
-        dataFilter = products
+        dataFilter = products.sort((a, b) => {
+            return months.indexOf(a.bulan) - months.indexOf(b.bulan);
+        });
     }
 
     // pagination
